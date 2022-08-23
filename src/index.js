@@ -50,11 +50,26 @@ document.addEventListener('DOMContentLoaded', () => {
             return item.id = itemId
         })
 
-        entryToModify.innerHTML = `
-            <td>${data.name}</td>
-            <td>${data.breed}</td>
-            <td>${data.sex}</td>
-            <td style="display:flex; justify-content: center"><button>Edit</button></td>`
+        if(entryToModify){
+            entryToModify.innerHTML = `
+                <td>${data.name}</td>
+                <td>${data.breed}</td>
+                <td>${data.sex}</td>
+                <td style="display:flex; justify-content: center"><button>Edit</button></td>`
+        }
+    }
+
+
+    function updateOurDogsOnDatabaseCopy(data){
+        let entryToModify =  dogsOnDataBase.find(item =>{
+            return item.id == data.id
+        })
+
+        entryToModify.name = data.name
+        entryToModify.breed = data.breed
+        entryToModify.sex = data.sex
+
+        console.log(entryToModify)
     }
 
     fetch('http://localhost:3000/dogs')
@@ -142,7 +157,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 )
             })
             .then(result => result.json())
-            .then(data => updateDomEntries(data))
+            .then(data => {
+                updateDomEntries(data)
+                updateOurDogsOnDatabaseCopy(data)
+            })
         }
 
 
