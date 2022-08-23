@@ -1,4 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const dogNamesAndIds = {}
+    function getDogId(dog){
+        for(dogName in dogNamesAndIds){
+            if(dogName === dog){
+                return dogNamesAndIds[dogName]
+            }
+        }
+    }
     
     //Populate the dom with registered dogs
 
@@ -18,6 +26,8 @@ document.addEventListener('DOMContentLoaded', () => {
             <td style="display:flex; justify-content: center"><button>Edit</button></td>`
 
             domDogsTable.append(domDog)
+
+            dogNamesAndIds[dog.name] = dog.id
         }
         console.log(domDogsTable)
 
