@@ -68,8 +68,6 @@ document.addEventListener('DOMContentLoaded', () => {
         entryToModify.name = data.name
         entryToModify.breed = data.breed
         entryToModify.sex = data.sex
-
-        console.log(entryToModify)
     }
 
     fetch('http://localhost:3000/dogs')
@@ -120,9 +118,6 @@ document.addEventListener('DOMContentLoaded', () => {
         )
     }
 
-    console.log("domdog form elements: ", )
-
-
     domDogForm.addEventListener('submit', e=>{
         e.preventDefault()
 
@@ -136,11 +131,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const dogName = domDogForm.elements[name = "name"].value || dogInfo.name
             const dogBreed = domDogForm.elements[name = "breed"].value || dogInfo.breed
             const dogSex = domDogForm.elements[name = "sex"].value || dogInfo.sex
-
-            console.log("dogid: ", dogId)
-            console.log("dogName: ", dogName)
-            console.log("dogBreed: ", dogBreed)
-            console.log("dogSex: ", dogSex)
 
             fetch(`http://localhost:3000/dogs/${dogId}`, {
                 method: 'PATCH',
