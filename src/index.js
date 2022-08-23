@@ -29,33 +29,50 @@ document.addEventListener('DOMContentLoaded', () => {
             const domDog = document.createElement('tr')
             domDog.id = dog.id
             domDog.innerHTML = `
-                <td>${dog.name}</td>
-                <td>${dog.breed}</td>
-                <td>${dog.sex}</td>
-                <td style="display:flex; justify-content: center"><button>Edit</button></td>`
+                <td class="dog-name">${dog.name}</td>
+                <td class="dog-breed">${dog.breed}</td>
+                <td class="dog-sex">${dog.sex}</td>
+                <td style="display:flex; justify-content: center" class="add-dog-button"><button>Edit Dog</button></td>`
 
             domDogsTable.append(domDog)
 
+            addEventListenerToButton(domDog)
         }
 
         dogsOnDataBase = data
     }
 
+    function addEventListenerToButton(domDog){
+        domDog.querySelector('.add-dog-button')
+        .addEventListener('click', e =>{
+            console.log(domDog)
+            const domDogForm = document.getElementById('dog-form')
+
+            domDogForm.elements[name = "name"].value = domDog.querySelector('.dog-name').textContent
+            domDogForm.elements[name = "breed"].value = domDog.querySelector('.dog-breed').textContent
+            domDogForm.elements[name = "sex"].value = domDog.querySelector('.dog-sex').textContent  
+
+        })
+    }
+
     function updateDomEntries(data){
+        console.log("data", data)
         const domDogEntries = document.getElementById('table-body')
         const domDogList = domDogEntries.querySelectorAll('tr')
         const itemId = `${data.id}`
         
         let entryToModify = Array.from(domDogList).find(item => {
-            return item.id = itemId
+            return item.id == itemId
         })
+
+        console.log("entry to modify: ", entryToModify)
 
         if(entryToModify){
             entryToModify.innerHTML = `
-                <td>${data.name}</td>
-                <td>${data.breed}</td>
-                <td>${data.sex}</td>
-                <td style="display:flex; justify-content: center"><button>Edit</button></td>`
+                <td class="dog-name">${data.name}</td>
+                <td class="dog-breed">${data.breed}</td>
+                <td class="dog-sex">${data.sex}</td>
+                <td style="display:flex; justify-content: center"><button>Edit Dog</button></td>`
         }
     }
 
