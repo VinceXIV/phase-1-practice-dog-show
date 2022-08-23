@@ -1,4 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
+    
+    //Populate the dom with registered dogs
+
     fetch('http://localhost:3000/dogs')
     .then(result => result.json())
     .then(data => {
@@ -19,4 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log(domDogsTable)
 
     })
+
+
+    //Edit existing dog
 })
