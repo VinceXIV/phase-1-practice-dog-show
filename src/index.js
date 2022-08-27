@@ -169,8 +169,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 updateOurDogsOnDatabaseCopy(data)
             })
         }
-
-
-
+        e.target.reset()
     })
 })
